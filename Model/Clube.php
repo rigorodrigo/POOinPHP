@@ -2,17 +2,28 @@
 
 namespace Model;
 use Model\Jogador;
+use Model\Estadio;
 
 class Clube
 {
 
+    private  $id;
     private $nome;
     private $pais;
     private $jogadores = [];
+    private $estadio;
+
+    private static $contador = 0;
 
     public function __construct($nome,$pais){
+        $this->id = self::$contador++;
         $this->nome = $nome;
         $this->pais = $pais;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getNome(){
@@ -32,6 +43,18 @@ class Clube
     {
         $this->pais = $pais;
     }
+
+    public function getEstadio()
+    {
+        return $this->estadio;
+    }
+
+    public function setEstadio( Estadio $estadio)
+    {
+        $this->estadio = $estadio;
+    }
+
+
 
     public function adicionarJogador (Jogador $jogador) {
         $this->jogadores[] = $jogador;

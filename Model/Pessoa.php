@@ -2,14 +2,24 @@
 namespace Model;
 class Pessoa
 {
+    private $id;
     private $nome;
     private $idade;
     private $nacionalidade;
 
+    private static $contador = 0;
+
     public function __construct($nome,$idade,$nacionalidade){
+
+        $this->id = self::$contador++;    // gerando id automático de acordo com o contador
         $this->nome = $nome;
         $this->idade = $idade;
         $this->nacionalidade = $nacionalidade;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getNome(){
