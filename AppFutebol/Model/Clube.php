@@ -15,10 +15,11 @@ class Clube
 
     private static $contador = 0;
 
-    public function __construct($nome,$pais){
+    public function __construct($nome,$pais, Estadio $estadio){
         $this->id = self::$contador++;
         $this->nome = $nome;
         $this->pais = $pais;
+        $this->estadio = $estadio;
     }
 
     public function getId()
@@ -70,5 +71,6 @@ class Clube
     {
         return $this->jogadores;
     }
+
 
 }
