@@ -13,11 +13,11 @@ class Jogador extends Pessoa
     private $peDominante;
     private $altura;
     private $peso;
-    private $partidas;
-    private $gols;
-    private $assistencias;
-    private $cartoesAmarelos;
-    private $cartoesVermelhos;
+    private $partidas = 0;
+    private $gols = 0;
+    private $assistencias = 0;
+    private $cartoesAmarelos = 0;
+    private $cartoesVermelhos = 0;
 
     public function __construct($nome, $idade, $nacionalidade,$posicao,$peDominante,
                                 $altura,$peso,$partidas,$gols,$assistencias,$cartoesAmarelos,
@@ -119,5 +119,21 @@ class Jogador extends Pessoa
     public function setCartoesVermelhos($cartoesVermelhos)
     {
         $this->cartoesVermelhos = $cartoesVermelhos;
+    }
+
+    public function marcarGol(){
+        $this->gols += 1;
+    }
+
+    public function darAssistencia(){
+        $this->assistencias += 1;
+    }
+
+    public function tomarCartaoAmarelo (){
+        $this->cartoesAmarelos += 1;
+    }
+
+    public function tomarCartaoVermelho (){
+        $this->cartoesVermelhos += 1;
     }
 }
