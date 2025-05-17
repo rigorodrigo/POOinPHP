@@ -10,7 +10,7 @@ class Clube
     private  $id;
     private $nome;
     private $pais;
-    private $jogadores = [];
+    private $jogadores;
     private $estadio;
 
     private static $contador = 0;
@@ -20,6 +20,7 @@ class Clube
         $this->nome = $nome;
         $this->pais = $pais;
         $this->estadio = $estadio;
+        $this->jogadores = new \ArrayObject();
     }
 
     public function getId()
@@ -58,14 +59,18 @@ class Clube
 
 
     public function adicionarJogador (Jogador $jogador) {
-        $this->jogadores[] = $jogador;
+        $this->jogadores->append($jogador);
         $jogador->setClube($this);
     }
 
-    /*public function removerJogador (Jogador $jogador){
-        $this->jogadores->remove($jogador);
+    public function removerJogador (Jogador $jogador){
+        foreach ($this->jogadores as $index => $j) {
+            if($j->getId() == $jogador->getId()){
+                $this->jogadores->offsetUnset($index);
+            }
+        }
         $jogador->setClube(null);
-    }*/
+    }
 
     public function getJogadores()
     {

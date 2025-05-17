@@ -3,6 +3,7 @@
 namespace Model;
 
 use ArrayObject;
+use model\Clube;
 
 class Competicao
 {
@@ -11,25 +12,81 @@ class Competicao
     private $nome;
     private $numClubes;
     private $pais;
-    private $clubes;
     private $tipo;
-    private $tabela = [];
+    private $tabela;
 
-    /**
-     * @param $nome
-     * @param $numClubes
-     * @param $pais
-     * @param $clubes
-     * @param $tipo
-     */
     public function __construct($nome, $numClubes, $pais,$tipo)
     {
         $this->nome = $nome;
         $this->numClubes = $numClubes;
         $this->pais = $pais;
-        $this->clubes = new ArrayObject();
+        $this->tipo = $tipo;
+        $this->tabela = new  ArrayObject();
+    }
+
+    public function getId(){
+        return $this->id;
+    }
+
+    public function getNome()
+    {
+        return $this->nome;
+    }
+
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function getNumClubes()
+    {
+        return $this->numClubes;
+    }
+
+    public function setNumClubes($numClubes)
+    {
+        $this->numClubes = $numClubes;
+    }
+
+    public function getPais()
+    {
+        return $this->pais;
+    }
+
+    public function setPais($pais)
+    {
+        $this->pais = $pais;
+    }
+
+    public function getTabela()
+    {
+        return $this->tabela;
+    }
+
+    public function adicionarClube (Clube $clube){
+        $this->tabela->append($clube);
+    }
+
+    public function removerClube (Clube $clube){
+        foreach ($this->tabela as $index => $c) {   // pegando o index do clube no vetor para remove-lo
+            if ($c->getId() == $clube->getId()){
+                $this->tabela->offsetUnset($index);
+                break;
+            }
+        }
+    }
+
+    public function getTipo()
+    {
+        return $this->tipo;
+    }
+
+    public function setTipo($tipo)
+    {
         $this->tipo = $tipo;
     }
+
+
 
 
 }
