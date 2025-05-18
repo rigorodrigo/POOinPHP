@@ -1,25 +1,22 @@
 <?php
 namespace Model;
-class Pessoa
-{
+
+use DateTime;
+
+abstract  class Pessoa {
+    use TraitId;
     private $id;
     private $nome;
-    private $idade;
+    private $nascimento;
     private $nacionalidade;
 
-    private static $contador = 0;
 
-    public function __construct($nome,$idade,$nacionalidade){
-
-        $this->id = self::$contador++;    // gerando id automático de acordo com o contador
-        $this->nome = $nome;
-        $this->idade = $idade;
-        $this->nacionalidade = $nacionalidade;
-    }
-
-    public function getId()
+    public function __construct($nome, \DateTime $nascimento, $nacionalidade)
     {
-        return $this->id;
+        $this->setId();
+        $this->nome = $nome;
+        $this->nascimento = $nascimento;
+        $this->nacionalidade = $nacionalidade;
     }
 
     public function getNome(){
@@ -30,21 +27,29 @@ class Pessoa
     $this->nome = $nome;
     }
 
-     public function getIdade(){
-    return $this->idade;
+    public function getNascimento()
+    {
+        return $this->nascimento;
     }
 
-    public function setIdade($idade){
-    $this->idade = $idade;
+    public function setNascimento(\DateTime $nascimento)
+    {
+        $this->nascimento = $nascimento;
+        $this->getIdade();
     }
 
     public function getNacionalidade(){
         return $this->nacionalidade;
     }
 
-
     public function setNacionalidade($nacionalidade)
     {
         $this->nacionalidade = $nacionalidade;
+    }
+
+    public function getIdade() {
+        $hoje = new DateTime();
+        $idade = $this->nascimento->diff($hoje)->y;       // y converte para anos a diferença da subtração
+        return $idade;
     }
 }

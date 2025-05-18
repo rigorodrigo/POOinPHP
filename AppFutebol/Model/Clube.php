@@ -3,29 +3,27 @@
 namespace Model;
 use Model\Jogador;
 use Model\Estadio;
+use Model\Treinador;
 
 class Clube
 {
 
+    use TraitId;
     private  $id;
     private $nome;
     private $pais;
     private $jogadores;
+    private $treinador;
     private $estadio;
 
-    private static $contador = 0;
+    public function __construct($nome,$pais, Estadio $estadio,Treinador $treinador){
 
-    public function __construct($nome,$pais, Estadio $estadio){
-        $this->id = self::$contador++;
+        $this->setId();
         $this->nome = $nome;
         $this->pais = $pais;
         $this->estadio = $estadio;
         $this->jogadores = new \ArrayObject();
-    }
-
-    public function getId()
-    {
-        return $this->id;
+        $this->treinador = $treinador;
     }
 
     public function getNome(){
@@ -56,7 +54,15 @@ class Clube
         $this->estadio = $estadio;
     }
 
+    public function getTreinador()
+    {
+        return $this->treinador;
+    }
 
+    public function setTreinador(Treinador $treinador){
+        $this->treinador = $treinador;
+        $treinador->setClube($this);
+    }
 
     public function adicionarJogador (Jogador $jogador) {
         $this->jogadores->append($jogador);

@@ -8,6 +8,7 @@ use model\Clube;
 class Competicao
 {
 
+    use TraitId;
     private $id;
     private $nome;
     private $numClubes;
@@ -17,15 +18,12 @@ class Competicao
 
     public function __construct($nome, $numClubes, $pais,$tipo)
     {
+        $this->setId();
         $this->nome = $nome;
         $this->numClubes = $numClubes;
         $this->pais = $pais;
         $this->tipo = $tipo;
         $this->tabela = new  ArrayObject();
-    }
-
-    public function getId(){
-        return $this->id;
     }
 
     public function getNome()

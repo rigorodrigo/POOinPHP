@@ -7,23 +7,19 @@ use Model\Clube;
 class Estadio
 {
 
+    use TraitId;
     private $id;
     private $nome;
     private $pais;
     private $clubeMandante;
 
-    private static $contador = 0;
 
-    public function __construct($clubeMandante, $pais, $nome)
+    public function __construct($pais, $nome)
     {
-        $this->id = self::$contador++;
-        $this->clubeMandante = $clubeMandante;
+        $this->setId();
+        $this->clubeMandante = new \ArrayObject();
         $this->pais = $pais;
         $this->nome = $nome;
-    }
-
-    public function getId(){
-        return $this->id;
     }
 
     public function getNome()
@@ -53,11 +49,15 @@ class Estadio
 
     public function setClubeMandante( Clube $clubeMandante)
     {
-        $this->clubeMandante = $clubeMandante;
-        $clubeMandante->setEstadio($this);
+        $this->clubeMandante->append($clubeMandante);        // um array de objetos pq um estádio pode ter mais de um mandante
+        $clubeMandante->setEstadio($this);                   // (Ex: Maracanã, com Flamengo e Fluminense)
     }
 
-
-
-
+    public function removerClubeMandante(Clube $clubeMandante){
+        foreach ($this->clubeMandante as $index => $c){
+            if($c->getId() == $clubeMandante->getId()){
+                unset($this->clubeMandante[$index]);
+            }
+        }
+    }
 }

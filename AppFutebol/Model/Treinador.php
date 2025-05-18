@@ -14,9 +14,9 @@ class Treinador extends Pessoa
     private $derrotas;
     private $empates;
 
-    public function __construct($nome, $idade, $nacionalidade,$partidas,$vitorias,$derrotas,$empates,$clube = null)
+    public function __construct($nome,$nacionalidade,\DateTime $nascimento,$partidas,$vitorias,$derrotas,$empates,$clube = null)
     {
-        parent::__construct($nome, $idade, $nacionalidade);
+        parent::__construct($nome, $nascimento, $nacionalidade);
         $this->partidas = $partidas;
         $this->vitorias = $vitorias;
         $this->derrotas = $derrotas;

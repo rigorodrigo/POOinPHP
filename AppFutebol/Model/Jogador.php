@@ -13,17 +13,18 @@ class Jogador extends Pessoa
     private $peDominante;
     private $altura;
     private $peso;
+    // inicializando as stats como zero
     private $partidas = 0;
     private $gols = 0;
     private $assistencias = 0;
     private $cartoesAmarelos = 0;
     private $cartoesVermelhos = 0;
 
-    public function __construct($nome, $idade, $nacionalidade,$posicao,$peDominante,
+    public function __construct($nome, \DateTime $nascimento, $nacionalidade,$posicao,$peDominante,
                                 $altura,$peso,$partidas,$gols,$assistencias,$cartoesAmarelos,
                                 $cartoesVermelhos,$clube = null)
     {
-        parent::__construct($nome, $idade, $nacionalidade);
+        parent::__construct($nome, $nascimento, $nacionalidade);
         $this->clube = $clube;
         $this->posicao = $posicao;
         $this->peDominante = $peDominante;
