@@ -14,13 +14,13 @@ class Treinador extends Pessoa
     private $derrotas;
     private $empates;
 
-    public function __construct($nome,$nacionalidade,\DateTime $nascimento,$partidas,$vitorias,$derrotas,$empates, Clube $clube = null)
+    public function __construct($nome,$nacionalidade,\DateTime $nascimento,$vitorias,$derrotas,$empates, Clube $clube = null)
     {
         parent::__construct($nome, $nascimento, $nacionalidade);
-        $this->partidas = $partidas;
         $this->vitorias = $vitorias;
         $this->derrotas = $derrotas;
         $this->empates = $empates;
+        $this->partidas = $vitorias + $derrotas + $empates;
         $this->clube = $clube;
     }
 
@@ -39,9 +39,11 @@ class Treinador extends Pessoa
         return $this->partidas;
     }
 
-    public function setPartidas($partidas)
+    // partidas é a soma destes 3, para evitar inconsistências do tipo (mais vitórias do que partidas,etc.)
+
+    public function setPartidas($vitorias,$derrotas,$empates)
     {
-        $this->partidas = $partidas;
+        $this->partidas = $vitorias + $derrotas + $empates;
     }
 
     public function getVitorias()
