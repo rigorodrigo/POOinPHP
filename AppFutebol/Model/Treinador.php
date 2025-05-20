@@ -14,7 +14,7 @@ class Treinador extends Pessoa
     private $derrotas;
     private $empates;
 
-    public function __construct($nome,$nacionalidade,\DateTime $nascimento,$partidas,$vitorias,$derrotas,$empates,$clube = null)
+    public function __construct($nome,$nacionalidade,\DateTime $nascimento,$partidas,$vitorias,$derrotas,$empates, Clube $clube = null)
     {
         parent::__construct($nome, $nascimento, $nacionalidade);
         $this->partidas = $partidas;
@@ -31,6 +31,7 @@ class Treinador extends Pessoa
 
     public function setClube (Clube $clube){
         $this->clube = $clube;
+        $clube->setTreinador($this);
     }
 
     public function getPartidas()

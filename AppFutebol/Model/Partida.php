@@ -55,4 +55,13 @@ class Partida
         return $this->golsVisitante;
     }
 
+    public function setGolsCasa($golsCasa)
+    {
+        $this->golsCasa = $golsCasa;
+    }
+
+    public function setGolsVisitante($golsVisitante)
+    {
+        $this->golsVisitante = $golsVisitante;
+    }
 }

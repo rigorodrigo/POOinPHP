@@ -52,6 +52,7 @@ class Clube
     public function setEstadio( Estadio $estadio)
     {
         $this->estadio = $estadio;
+        $estadio->setClubeMandante($this);
     }
 
     public function getTreinador()
