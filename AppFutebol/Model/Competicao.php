@@ -84,7 +84,15 @@ class Competicao
         $this->tipo = $tipo;
     }
 
+    // método para verificar se o clube está na competição
 
-
+    public function temClube(Clube $clube){
+        foreach ($this->getTabela() as $c){
+            if($c->getId() == $clube->getId()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
