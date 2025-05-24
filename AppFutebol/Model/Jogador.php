@@ -89,17 +89,8 @@ class Jogador extends Pessoa
         return $this->gols;
     }
 
-    public function setGols ($gols){
-        $this->gols = $gols;
-    }
-
     public function getAssistencias(){
         return $this->assistencias;
-    }
-
-    public function setAssistencias($assistencias)
-    {
-        $this->assistencias = $assistencias;
     }
 
     public function getCartoesAmarelos()
@@ -107,19 +98,9 @@ class Jogador extends Pessoa
         return $this->cartoesAmarelos;
     }
 
-    public function setCartoesAmarelos($cartoesAmarelos)
-    {
-        $this->cartoesAmarelos = $cartoesAmarelos;
-    }
-
     public function getCartoesVermelhos()
     {
         return $this->cartoesVermelhos;
-    }
-
-    public function setCartoesVermelhos($cartoesVermelhos)
-    {
-        $this->cartoesVermelhos = $cartoesVermelhos;
     }
 
     public function marcarGol(){
