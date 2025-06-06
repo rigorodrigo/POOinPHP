@@ -77,7 +77,7 @@ class MainView {
     }
 
     private function addClube() {
-        $estadio = $this->buscarEStadioporId($_POST['estadio_id']);
+        $estadio = $this->buscarEstadioPorId($_POST['estadio_id']);
         if ($estadio) {
             $this->clubeController->criarClube($_POST['nome'], $_POST['pais'], $estadio);
             $this->message = "Clube adicionado com sucesso!";
@@ -130,7 +130,7 @@ class MainView {
         }
     }
 
-    private function buscarEStadioporId($id) {           // com não tem EstadioController ( acreditei não ser necessário)
+    private function buscarEstadioPorId($id) {           // com não tem EstadioController ( acreditei não ser necessário)
         foreach ($this->estadios as $estadio) {
             if ($estadio->getId() == $id) return $estadio;
         }
@@ -138,11 +138,11 @@ class MainView {
     }
 
     public function render() {
-        $tabelaOutput = $this->getTabelaOutput();
+        $tabela = $this->mostrarTabela();
         include 'View/template.php';
     }
 
-    private function getTabelaOutput() {
+    private function mostrarTabela() {
         // Só processa se realmente foi solicitado mostrar a tabela
         if (!isset($_GET['ver_tabela']) || !isset($_GET['competicao_id'])) {
             return '';
