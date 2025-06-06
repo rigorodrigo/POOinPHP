@@ -2,9 +2,6 @@
 
 namespace View;
 
-use Controller\ClubeController;
-use Controller\JogadorController;
-use Controller\CompeticaoController;
 use Exception;
 use Model\Estadio;
 use Model\Partida;
@@ -80,7 +77,7 @@ class MainView {
     }
 
     private function addClube() {
-        $estadio = $this->findEstadioById($_POST['estadio_id']);
+        $estadio = $this->buscarEStadioporId($_POST['estadio_id']);
         if ($estadio) {
             $this->clubeController->criarClube($_POST['nome'], $_POST['pais'], $estadio);
             $this->message = "Clube adicionado com sucesso!";
@@ -108,7 +105,7 @@ class MainView {
     }
 
     private function addClubeCompeticao() {
-        $competicao = $this->findCompeticaoById($_POST['competicao_id']);
+        $competicao = $this->competicaoController->buscarCompeticaoPorId($_POST['competicao_id']);
         $clube = $this->clubeController->buscarClubePorId((int)$_POST['clube_id']);
 
         if ($competicao && $clube) {
@@ -120,7 +117,7 @@ class MainView {
     }
 
     private function finalizarPartida() {
-        $competicao = $this->findCompeticaoById($_POST['competicao_id']);
+        $competicao = $this->competicaoController->buscarCompeticaoPorId($_POST['competicao_id']);
         $clubeCasa = $this->clubeController->buscarClubePorId((int)$_POST['clube_casa_id']);
         $clubeVisitante = $this->clubeController->buscarClubePorId((int)$_POST['clube_visitante_id']);
 
@@ -133,16 +130,9 @@ class MainView {
         }
     }
 
-    private function findEstadioById($id) {
+    private function buscarEStadioporId($id) {           // com não tem EstadioController ( acreditei não ser necessário)
         foreach ($this->estadios as $estadio) {
             if ($estadio->getId() == $id) return $estadio;
-        }
-        return null;
-    }
-
-    private function findCompeticaoById($id) {
-        foreach ($this->competicaoController->listarCompeticoes() as $competicao) {
-            if ($competicao->getId() == $id) return $competicao;
         }
         return null;
     }
@@ -158,7 +148,7 @@ class MainView {
             return '';
         }
 
-        $competicao = $this->findCompeticaoById($_GET['competicao_id']);
+        $competicao = $this->competicaoController->buscarCompeticaoPorId($_GET['competicao_id']);
 
         if (!$competicao) {
             return '<div class="alert alert-warning">Competição não encontrada!</div>';
