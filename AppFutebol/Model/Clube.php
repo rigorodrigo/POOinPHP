@@ -12,6 +12,7 @@ class Clube
     private string $nome;
     private string $pais;
     private ArrayObject $jogadores;
+    private Treinador $treinador;
     private Estadio $estadio;
 
     public function __construct($nome,$pais, Estadio $estadio){
@@ -43,6 +44,16 @@ class Clube
     public function getEstadio() : Estadio
     {
         return $this->estadio;
+    }
+
+    public function getTreinador(): Treinador
+    {
+        return $this->treinador;
+    }
+
+    public function setTreinador(Treinador $treinador): void
+    {
+        $this->treinador = $treinador;
     }
 
     public function setEstadio( Estadio $estadio) :void
