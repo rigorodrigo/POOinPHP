@@ -108,6 +108,12 @@ function gerarMock() {
     $internacional->adicionarJogador($fernandoReges);
     $internacional->adicionarJogador($braianAguirre);
 
+    // Adicionando treinadores aos seus respectivos clubes
+
+    $flamengo->setTreinador($filipeLuis);
+    $palmeiras->setTreinador($abelFerreira);
+    $internacional->setTreinador($rogerMachado);
+
     // Criar competição
     try{
         $brasileirao = $competicaoController->criarCompeticao("Brasileirão Série A", 20, "Brasil", "Nacional");
