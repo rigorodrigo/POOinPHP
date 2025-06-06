@@ -49,6 +49,15 @@ class CompeticaoController
         return null;
     }
 
+    public function buscarCompeticaoPorId (int $id) :? Competicao{
+        foreach ($this->listarCompeticoes()as $competicao) {
+            if ($competicao->getId() === $id) {
+                return $competicao;
+            }
+        }
+        return null;
+    }
+
     public function mostrarTabela (Competicao $competicao) : string
     {
         $tabela = $competicao->getTabelaPontos();
